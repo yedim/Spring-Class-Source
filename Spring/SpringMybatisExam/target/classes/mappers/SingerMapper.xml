@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="exam.test.SingerMapper">
+  	<select id="getSingerCount" resultType="int">
+  		select count(*) 
+  		from singer_group
+  	</select>
+  	<select id="getSingerMember" resultType="int">
+  	select member
+  	from singer_group
+  	where name=#{name}
+  	</select>
+  	<select id="getSingerName" resultType="int">
+  	select name
+  	from singer_group
+  	where member=#{member}
+  	</select>
+  	
+  	<select id="deleteSinger" resultType="int">
+  	select name
+  	from singer_group
+  	where member=#{member}
+  	</select>
+  	
+  </mapper>

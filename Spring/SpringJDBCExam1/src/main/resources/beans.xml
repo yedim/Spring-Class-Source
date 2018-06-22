@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context.xsd
+	">
+
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://localhost:3306/mydb?useUnicode=true&amp;characterEncoding=UTF-8"/>
+		<property name="username" value="root"/>  <!-- root계정 -->
+		<property name="password" value="1234"/>
+	</bean>
+	
+	<!-- JdbcTemplate jdbcTemplate = new JdbcTemplate(); id는 객체이름 class는 클래스타입-->
+	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+		<property name="dataSource" ref="dataSource"/>  <!-- 매개변수 setter -->
+	</bean>
+	
+	<bean id="selectTest" class="exam.springjdbc.SelectTest">
+		<constructor-arg ref="jdbcTemplate"/> <!-- 생성자주입 -->
+	</bean>
+	
+	<bean id="connectTest" class="exam.springjdbc.ConnectTest">
+		<property name="dataSource" ref="dataSource"/>  <!-- root계정 -->
+	</bean>
+	
+	<bean id="selectTest1" class="exam.springjdbc.SelectTest1">
+		<constructor-arg ref="jdbcTemplate"/> <!-- 생성자주입 -->
+	</bean>
+	
+	<bean id="selectTest2" class="exam.springjdbc.SelectTest2">
+		<constructor-arg ref="jdbcTemplate"/> <!-- 생성자주입 -->
+	</bean>
+</beans>
